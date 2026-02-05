@@ -55,21 +55,104 @@ def build_retrieval_query(inp: DesignInput) -> str:
     )
 
 
-def assemble_prompt(inp: DesignInput, rag_context: str) -> Dict[str, Any]:
-    # 组装中文主 Prompt
-    prompt_lines = [
-        f"为{inp.industry}行业设计{inp.task}的中文文生图提示词。",
-        f"品牌名称：{inp.brand_name or '未命名'}。",
-    ]
-    if inp.style:
-        prompt_lines.append(f"风格：{inp.style}。")
-    if inp.elements:
-        prompt_lines.append(f"元素/关键词：{inp.elements}。")
-    if rag_context:
-        prompt_lines.append("结合以下知识增强：")
-        prompt_lines.append(rag_context)
+def _parse_kb_context(rag_context: str) -> Dict[str, list]:
+    # 解析 KB 返回的上下文，去掉内部标签，仅保留内容
+    buckets = {
+        "template": [],
+        "rules": [],
+        "palette": [],
+        "typography": [],
+        "elements": [],
+        "negatives": [],
+    }
+    if not rag_context:
+        return buckets
 
-    prompt = "\n".join(prompt_lines)
+    current = None
+    for raw in rag_context.splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        # 跳过内部调试标签
+        if line.startswith("[KB filters]"):
+            continue
+        if line.startswith("[模板]"):
+            current = "template"
+            continue
+        if line.startswith("[规则与约束]"):
+            current = "rules"
+            continue
+        if line.startswith("[配色]"):
+            current = "palette"
+            continue
+        if line.startswith("[字体]"):
+            current = "typography"
+            continue
+        if line.startswith("[图形元素]"):
+            current = "elements"
+            continue
+        if line.startswith("[避坑/禁忌]"):
+            current = "negatives"
+            continue
+
+        # 普通内容行，去掉前缀 "- "
+        if line.startswith("- "):
+            line = line[2:].strip()
+        if current is not None:
+            buckets[current].append(line)
+    return buckets
+
+
+def _render_prompt(inp: DesignInput, rag_context: str) -> str:
+    # Prompt Formatter / Renderer：输出可直接用于文生图的标准格式
+    kb = _parse_kb_context(rag_context)
+
+    # 主体描述
+    subject = [
+        f"{inp.industry}行业{inp.task}设计",
+        f"品牌名称：{inp.brand_name or '未命名'}",
+    ]
+
+    # 风格与元素
+    style_bits = []
+    if inp.style:
+        style_bits.append(inp.style)
+    if kb["template"]:
+        style_bits.extend(kb["template"])
+
+    element_bits = []
+    if inp.elements:
+        element_bits.append(inp.elements)
+    if kb["elements"]:
+        element_bits.extend(kb["elements"])
+
+    # 规则与约束
+    rule_bits = kb["rules"]
+
+    # 配色与字体
+    palette_bits = kb["palette"]
+    typography_bits = kb["typography"]
+
+    # 组合输出：稳定结构，便于直接复制使用
+    sections = []
+    sections.append("Subject: " + "；".join(subject))
+    if style_bits:
+        sections.append("Style: " + "；".join(style_bits))
+    if palette_bits:
+        sections.append("Palette: " + "；".join(palette_bits))
+    if typography_bits:
+        sections.append("Typography: " + "；".join(typography_bits))
+    if element_bits:
+        sections.append("Elements: " + "；".join(element_bits))
+    if rule_bits:
+        sections.append("Constraints: " + "；".join(rule_bits))
+
+    return "\n".join(sections)
+
+
+def assemble_prompt(inp: DesignInput, rag_context: str) -> Dict[str, Any]:
+    # 组装中文主 Prompt（可直接用于文生图）
+    prompt = _render_prompt(inp, rag_context)
 
     # 负面提示词：基线 + 用户 avoid
     negative = settings.default_negative_prompt
