@@ -1,0 +1,5 @@
+# entries.jsonl
+{"id":"rule-food-logo-01","kind":"rule","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["简洁","易识别"],"text":"优先使用简洁几何形，确保在小尺寸下仍清晰可辨。","priority":3}
+{"id":"rule-food-signage-01","kind":"rule","industry":["餐饮"],"task":["storefront"],"style":["*"],"tags":["门头","识别"],"text":"门头需远距离可读，字重偏粗，避免细线条。","priority":3}
+{"id":"element-food-01","kind":"element","industry":["餐饮"],"task":["logo","storefront"],"style":["*"],"tags":["甜品","小吃"],"text":"可选用勺子、碗、蒸汽等图形元素表现食物温度感。","priority":2}
+{"id":"negative-food-01","kind":"negative","industry":["餐饮"],"task":["logo","storefront"],"style":["*"],"tags":["禁忌"],"text":"避免复杂纹理与过度写实食物特写，影响识别性。","priority":2}

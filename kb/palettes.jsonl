@@ -1,0 +1,3 @@
+# palettes.jsonl
+{"id":"palette-food-01","kind":"palette","industry":["餐饮"],"task":["logo","storefront"],"style":["*"],"tags":["温暖","食欲"],"text":"暖橙、奶油白、浅咖色为主，少量深棕作为对比。","priority":2}
+{"id":"palette-food-02","kind":"palette","industry":["餐饮"],"task":["logo","storefront"],"style":["现代"],"tags":["现代","清爽"],"text":"薄荷绿 + 米白 + 炭黑，呈现清爽与健康感。","priority":1}

@@ -1,0 +1,3 @@
+# templates.jsonl
+{"id":"tpl-logo-01","kind":"template","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["极简"],"text":"极简扁平风格，强调识别度与品牌温度，图形与文字比例均衡。","priority":3}
+{"id":"tpl-storefront-01","kind":"template","industry":["餐饮"],"task":["storefront"],"style":["*"],"tags":["门头"],"text":"门头招牌设计，强调远距识别与夜间可读性，色块干净利落。","priority":3}
