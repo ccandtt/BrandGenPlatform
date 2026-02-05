@@ -3,3 +3,7 @@
 {"id":"rule-food-signage-01","kind":"rule","industry":["餐饮"],"task":["storefront"],"style":["*"],"tags":["门头","识别"],"text":"门头需远距离可读，字重偏粗，避免细线条。","priority":3}
 {"id":"element-food-01","kind":"element","industry":["餐饮"],"task":["logo","storefront"],"style":["*"],"tags":["甜品","小吃"],"text":"可选用勺子、碗、蒸汽等图形元素表现食物温度感。","priority":2}
 {"id":"negative-food-01","kind":"negative","industry":["餐饮"],"task":["logo","storefront"],"style":["*"],"tags":["禁忌"],"text":"避免复杂纹理与过度写实食物特写，影响识别性。","priority":2}
+{"id":"rule-food-logo-02","kind":"rule","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["独特","新潮","识别"],"text":"强调品牌独特性与新潮感，形成一眼可辨的视觉记忆点。","priority":2}
+{"id":"rule-food-logo-03","kind":"rule","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["麻辣","浓厚风味"],"text":"通过图形与文字传达浓厚麻辣的味觉联想，突出醬汁与食材的厚实感。","priority":2}
+{"id":"rule-food-logo-04","kind":"rule","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["简单清晰","可读性"],"text":"遵循简单清晰原则，确保小尺寸与远距离仍保持清楚辨识。","priority":2}
+{"id":"rule-food-logo-05","kind":"rule","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["品牌体验","价值方案"],"text":"以品牌体验为导向，强化与消费者的契合度，传达可持续增长的品牌价值感。","priority":1}

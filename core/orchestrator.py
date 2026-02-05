@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import Dict, Any
 
 from app.config import settings
+from core.prompt_logger import save_prompt_result
 
 
 @dataclass
@@ -107,45 +108,38 @@ def _render_prompt(inp: DesignInput, rag_context: str) -> str:
     # Prompt Formatter / Renderer：输出可直接用于文生图的标准格式
     kb = _parse_kb_context(rag_context)
 
-    # 主体描述
-    subject = [
-        f"{inp.industry}行业{inp.task}设计",
-        f"品牌名称：{inp.brand_name or '未命名'}",
-    ]
+    # 轻量决策：选取单一主风格/配色/字体，元素限制 1-2
+    dominant_style = inp.style or (kb["template"][0] if kb["template"] else "")
+    dominant_palette = kb["palette"][0] if kb["palette"] else ""
+    dominant_typography = kb["typography"][0] if kb["typography"] else ""
 
-    # 风格与元素
-    style_bits = []
-    if inp.style:
-        style_bits.append(inp.style)
-    if kb["template"]:
-        style_bits.extend(kb["template"])
-
+    # 元素：用户优先，其次 KB；最多 2 个
     element_bits = []
     if inp.elements:
-        element_bits.append(inp.elements)
-    if kb["elements"]:
+        element_bits.extend([e.strip() for e in inp.elements.split("、") if e.strip()])
+    if not element_bits and kb["elements"]:
         element_bits.extend(kb["elements"])
+    element_bits = element_bits[:2]
 
-    # 规则与约束
-    rule_bits = kb["rules"]
+    # 规则/约束：仅保留最关键前 2 条，避免冗长
+    rule_bits = kb["rules"][:2]
 
-    # 配色与字体
-    palette_bits = kb["palette"]
-    typography_bits = kb["typography"]
+    # 主体描述：更偏生成指令，不用抽象营销语言
+    subject = f"{inp.industry}行业{inp.task}，品牌名“{inp.brand_name or '未命名'}”"
 
-    # 组合输出：稳定结构，便于直接复制使用
+    # 生成友好格式：短句 + 清晰属性
     sections = []
-    sections.append("Subject: " + "；".join(subject))
-    if style_bits:
-        sections.append("Style: " + "；".join(style_bits))
-    if palette_bits:
-        sections.append("Palette: " + "；".join(palette_bits))
-    if typography_bits:
-        sections.append("Typography: " + "；".join(typography_bits))
+    sections.append(f"Subject: {subject}")
+    if dominant_style:
+        sections.append(f"Style: {dominant_style}")
+    if dominant_palette:
+        sections.append(f"Palette: {dominant_palette}")
+    if dominant_typography:
+        sections.append(f"Typography: {dominant_typography}")
     if element_bits:
-        sections.append("Elements: " + "；".join(element_bits))
+        sections.append(f"Elements: {'、'.join(element_bits)}")
     if rule_bits:
-        sections.append("Constraints: " + "；".join(rule_bits))
+        sections.append(f"Constraints: {'；'.join(rule_bits)}")
 
     return "\n".join(sections)
 
@@ -184,4 +178,6 @@ def run_design_pipeline(payload: Dict[str, Any], rag_service) -> Dict[str, Any]:
     result = assemble_prompt(inp, rag_context)
     if evidence:
         result["evidence"] = evidence
+    # 保存 Prompt 结果到本地文件（可用于日志或追溯）
+    save_prompt_result(result, path="prompt_result.txt")
     return result

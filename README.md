@@ -111,6 +111,20 @@ curl -X POST http://127.0.0.1:8000/v1/design/prompt \
 }
 ```
 
+case 2:
+```bash
+curl -X POST http://127.0.0.1:8000/v1/design/prompt \
+  -H "Content-Type: application/json" \
+  -d '{
+    "task": "logo",
+    "industry": "餐饮",
+    "brand_name": "辣椒先生",
+    "style": "市井感、手绘字体、厚重、张力强",
+    "elements": 辣椒图形、火焰、红黑高对比",
+    "avoid": "几何极简、无衬线冷风格"
+  }'
+```
+
 ## 五、扩展性说明：新增设计任务（如 packaging/menu）
 
 1. 配置层

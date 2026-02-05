@@ -1,3 +1,7 @@
 # templates.jsonl
 {"id":"tpl-logo-01","kind":"template","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["极简"],"text":"极简扁平风格，强调识别度与品牌温度，图形与文字比例均衡。","priority":3}
 {"id":"tpl-storefront-01","kind":"template","industry":["餐饮"],"task":["storefront"],"style":["*"],"tags":["门头"],"text":"门头招牌设计，强调远距识别与夜间可读性，色块干净利落。","priority":3}
+{"id":"tpl-logo-02","kind":"template","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["独特","识别"],"text":"强调品牌独特性与新潮感，视觉需简单清晰且一眼可辨。","priority":2}
+{"id":"tpl-logo-03","kind":"template","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["麻辣","浓厚"],"text":"突出味觉联想与浓厚感，图形与文字形成强识别记忆点。","priority":2}
+{"id":"tpl-logo-04","kind":"template","industry":["餐饮"],"task":["logo"],"style":["新潮","现代"],"tags":["对比","辨识"],"text":"采用新潮视觉语言，强调对比与辨识度，整体简洁清楚。","priority":1}
+{"id":"tpl-logo-05","kind":"template","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["品牌体验","价值"],"text":"以品牌体验为导向，传达成长感与价值感，构图简洁识别优先。","priority":1}

@@ -1,3 +1,7 @@
 # palettes.jsonl
 {"id":"palette-food-01","kind":"palette","industry":["餐饮"],"task":["logo","storefront"],"style":["*"],"tags":["温暖","食欲"],"text":"暖橙、奶油白、浅咖色为主，少量深棕作为对比。","priority":2}
 {"id":"palette-food-02","kind":"palette","industry":["餐饮"],"task":["logo","storefront"],"style":["现代"],"tags":["现代","清爽"],"text":"薄荷绿 + 米白 + 炭黑，呈现清爽与健康感。","priority":1}
+{"id":"palette-food-03","kind":"palette","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["麻辣","热度"],"text":"辣椒红、深红棕、暖橙为主，传达热度与刺激感。","priority":2}
+{"id":"palette-food-04","kind":"palette","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["浓醬","厚实"],"text":"深咖啡、酱褐、奶油白组合，强调醬汁厚实与浓郁质感。","priority":2}
+{"id":"palette-food-05","kind":"palette","industry":["餐饮"],"task":["logo"],"style":["现代","新潮"],"tags":["新潮","对比"],"text":"亮红、炭黑、灰白形成强对比，塑造独特新潮的视觉冲击。","priority":1}
+{"id":"palette-food-06","kind":"palette","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["识别","清晰"],"text":"深红、米白、中灰搭配，强调识别度与干净背景。","priority":1}

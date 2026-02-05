@@ -1,3 +1,7 @@
 # typography.jsonl
 {"id":"type-food-01","kind":"typography","industry":["餐饮"],"task":["logo","storefront"],"style":["*"],"tags":["亲和","易读"],"text":"中文采用圆角黑体或手写感字形，保持亲和与可读性。","priority":2}
 {"id":"type-food-02","kind":"typography","industry":["餐饮"],"task":["storefront"],"style":["现代"],"tags":["门头","醒目"],"text":"门头字形偏粗，字距适中，避免过细或过紧。","priority":2}
+{"id":"type-food-03","kind":"typography","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["粗黑","力量感"],"text":"使用粗黑体或重字重字体，突出热辣与浓厚的品牌气质。","priority":2}
+{"id":"type-food-04","kind":"typography","industry":["餐饮"],"task":["logo","storefront"],"style":["*"],"tags":["简洁","可读"],"text":"字形结构简洁清晰，保证门店识别与小尺寸可读性。","priority":2}
+{"id":"type-food-05","kind":"typography","industry":["餐饮"],"task":["logo"],"style":["新潮","现代"],"tags":["新潮","锋利"],"text":"略带锋角或现代感的字形风格，传达独特新潮流气质。","priority":1}
+{"id":"type-food-06","kind":"typography","industry":["餐饮"],"task":["logo"],"style":["*"],"tags":["稳重","厚实"],"text":"笔画厚实、重心稳定，强化浓厚的品牌印象。","priority":1}
